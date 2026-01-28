@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import ServiceCard from './ServiceCard';
-import ROICalculator from './ROICalculator';
 import MethodologyInfographic from './MethodologyInfographic';
 
 interface Service {
@@ -122,22 +121,6 @@ const ServicesInteractive: React.FC = () => {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-headline font-bold text-foreground mb-4">
-              Calculez Votre Retour sur Investissement
-            </h2>
-            <p className="text-base font-body text-muted-foreground max-w-2xl mx-auto">
-              Découvrez le potentiel de croissance de votre entreprise avec nos services
-            </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <ROICalculator serviceName="Communication Digitale" />
-            <ROICalculator serviceName="Marketing d'Influence" />
-          </div>
-        </div>
-      </section>
 
     </div>);
 
