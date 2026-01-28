@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez nos services : Branding, Web & Mobile, Communication, Marketing Stratégique et Accompagnement sur-mesure.">
+    <title>Services - VITRINE CONSULTING</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .services-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .services-hero h1 {
+            font-family: var(--font-headline);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .services-hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .services-list {
+            padding: 4rem 0;
+        }
+        
+        .service-item {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        .service-item:nth-child(even) {
+            direction: rtl;
+        }
+        
+        .service-item:nth-child(even) > * {
+            direction: ltr;
+        }
+        
+        .service-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .service-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 400px;
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-title {
+            font-family: var(--font-headline);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .service-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--text-primary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--brand-green);
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .service-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-item:nth-child(even) {
+                direction: ltr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.JPG.jpeg" alt="VITRINE CONSULTING">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="services.html" class="active">Agence</a></li>
+                    <li><a href="projects.html">Projets</a></li>
+                    <li><a href="media-gallery.html">Galerie</a></li>
+                    <li><a href="clients-and-partners.html">Clients & Partenaires</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Services Hero -->
+        <section class="services-hero">
+            <div class="container">
+                <p style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; opacity: 0.9;">
+                    Expertise & Innovation
+                </p>
+                <h1>Agence & Services</h1>
+                <p>
+                    Présentation condensée de l'agence. Cinq piliers : branding, web & mobile, communication multicanal, 
+                    marketing stratégique, accompagnement sur-mesure.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services List -->
+        <section class="services-list">
+            <div class="container">
+                <!-- Service 1: Branding -->
+                <div class="service-item">
+                    <div class="service-content">
+                        <div class="service-icon">🎨</div>
+                        <h2 class="service-title">Branding & design premium</h2>
+                        <p class="service-description">
+                            Identité de marque, charte graphique, packaging et direction artistique. Une image premium qui vous démarque.
+                        </p>
+                        <ul class="service-features">
+                            <li>Identité visuelle et charte graphique</li>
+                            <li>Logo et déclinaisons</li>
+                            <li>Packaging et print</li>
+                            <li>Direction artistique</li>
+                            <li>Design systèmes</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_183be303d-1766470449787.png" alt="Branding et design premium" class="service-image">
+                </div>
+
+                <!-- Service 2: Web & Mobile -->
+                <div class="service-item">
+                    <div class="service-content">
+                        <div class="service-icon">💻</div>
+                        <h2 class="service-title">Web & mobile (sites, apps, e-commerce)</h2>
+                        <p class="service-description">
+                            Sites vitrine, applications mobiles, plateformes e-commerce. Expérience utilisateur et performance.
+                        </p>
+                        <ul class="service-features">
+                            <li>Sites vitrine et landing</li>
+                            <li>Applications mobiles</li>
+                            <li>E-commerce sur-mesure</li>
+                            <li>UX/UI design</li>
+                            <li>Hébergement et maintenance</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_12681ab67-1764666699439.png" alt="Web et mobile" class="service-image">
+                </div>
+
+                <!-- Service 3: Communication -->
+                <div class="service-item">
+                    <div class="service-content">
+                        <div class="service-icon">📢</div>
+                        <h2 class="service-title">Communication multicanal</h2>
+                        <p class="service-description">
+                            Stratégie de contenu, réseaux sociaux, relations presse et événementiel. Une présence cohérente et impactante.
+                        </p>
+                        <ul class="service-features">
+                            <li>Stratégie de contenu</li>
+                            <li>Gestion réseaux sociaux</li>
+                            <li>Relations presse</li>
+                            <li>Événementiel</li>
+                            <li>Influence marketing</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978" alt="Communication multicanal" class="service-image">
+                </div>
+
+                <!-- Service 4: Marketing -->
+                <div class="service-item">
+                    <div class="service-content">
+                        <div class="service-icon">📈</div>
+                        <h2 class="service-title">Marketing stratégique</h2>
+                        <p class="service-description">
+                            Analyse de marché, positionnement, campagnes ciblées et mesure de performance. Des résultats concrets.
+                        </p>
+                        <ul class="service-features">
+                            <li>Analyse de marché</li>
+                            <li>Positionnement de marque</li>
+                            <li>Campagnes ciblées</li>
+                            <li>Mesure de performance</li>
+                            <li>Optimisation continue</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f" alt="Marketing stratégique" class="service-image">
+                </div>
+
+                <!-- Service 5: Accompagnement -->
+                <div class="service-item">
+                    <div class="service-content">
+                        <div class="service-icon">🤝</div>
+                        <h2 class="service-title">Accompagnement sur-mesure</h2>
+                        <p class="service-description">
+                            Conseil stratégique, formation d'équipes et suivi personnalisé. Un partenaire à vos côtés pour votre croissance.
+                        </p>
+                        <ul class="service-features">
+                            <li>Conseil stratégique</li>
+                            <li>Formation d'équipes</li>
+                            <li>Suivi personnalisé</li>
+                            <li>Accompagnement long terme</li>
+                            <li>Support dédié</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Accompagnement sur-mesure" class="service-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white; text-align: center;">
+            <div class="container">
+                <h2 style="font-family: var(--font-headline); font-size: 2.5rem; margin-bottom: 1.5rem;">
+                    Découvrez comment nous pouvons transformer votre communication
+                </h2>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="contact.html" class="btn" style="background: white; color: var(--primary);">
+                        Prendre contact
+                    </a>
+                    <a href="projects.html" class="btn btn-secondary">
+                        Voir nos projets
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VITRINE CONSULTING</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 1rem; line-height: 1.8;">
+                        Transformons ensemble votre communication en impact culturel. 
+                        Expertise stratégique et créative au service de votre vision.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Agence / Services</a></li>
+                        <li><a href="projects.html">Projets</a></li>
+                        <li><a href="media-gallery.html">Galerie</a></li>
+                        <li><a href="clients-and-partners.html">Clients & Partenaires</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="#">Mentions Légales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 VITRINE CONSULTING. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

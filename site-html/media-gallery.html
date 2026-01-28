@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galerie média de VITRINE CONSULTING - Photos et vidéos de nos projets et événements.">
+    <title>Galerie Média - VITRINE CONSULTING</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .gallery-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .gallery-hero h1 {
+            font-family: var(--font-headline);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 2rem 0;
+            background: var(--secondary);
+        }
+        
+        .gallery-filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: var(--font-cta);
+        }
+        
+        .gallery-filter-btn:hover,
+        .gallery-filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+        
+        .media-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        .media-item img,
+        .media-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .media-item::after {
+            content: '🔍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .media-item:hover::after {
+            opacity: 1;
+        }
+        
+        .media-item[data-type="video"]::after {
+            content: '▶';
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.JPG.jpeg" alt="VITRINE CONSULTING">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="services.html">Agence</a></li>
+                    <li><a href="projects.html">Projets</a></li>
+                    <li><a href="media-gallery.html" class="active">Galerie</a></li>
+                    <li><a href="clients-and-partners.html">Clients & Partenaires</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Gallery Hero -->
+        <section class="gallery-hero">
+            <div class="container">
+                <h1>Galerie Média</h1>
+                <p style="font-size: 1.125rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+                    Découvrez nos réalisations en images et vidéos
+                </p>
+            </div>
+        </section>
+
+        <!-- Gallery Filters -->
+        <div class="gallery-filters">
+            <button class="gallery-filter-btn active" data-filter="all">Tous</button>
+            <button class="gallery-filter-btn" data-filter="events">Événements</button>
+            <button class="gallery-filter-btn" data-filter="projects">Projets</button>
+            <button class="gallery-filter-btn" data-filter="team">Équipe</button>
+            <button class="gallery-filter-btn" data-filter="behind-scenes">Coulisses</button>
+        </div>
+
+        <!-- Media Grid -->
+        <section class="section">
+            <div class="container">
+                <div class="media-grid">
+                    <!-- Media Items -->
+                    <div class="media-item" data-lightbox="https://images.unsplash.com/photo-1732371481436-c4510ceea581" data-category="events">
+                        <img src="https://images.unsplash.com/photo-1732371481436-c4510ceea581" alt="Événement ICILABOUF">
+                    </div>
+                    
+                    <div class="media-item" data-lightbox="https://img.rocket.new/generatedImages/rocket_gen_img_16fb3ceb8-1769245706130.png" data-category="projects">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16fb3ceb8-1769245706130.png" alt="Projet Afterbac">
+                    </div>
+                    
+                    <div class="media-item" data-lightbox="https://img.rocket.new/generatedImages/rocket_gen_img_1b6d75657-1766483971279.png" data-category="projects">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b6d75657-1766483971279.png" alt="Campagne PME">
+                    </div>
+                    
+                    <div class="media-item" data-lightbox="https://img.rocket.new/generatedImages/rocket_gen_img_183be303d-1766470449787.png" data-category="projects">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_183be303d-1766470449787.png" alt="Branding Premium">
+                    </div>
+                    
+                    <div class="media-item" data-lightbox="https://images.unsplash.com/photo-1552664730-d307ca884978" data-category="events">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978" alt="Événement Communication">
+                    </div>
+                    
+                    <div class="media-item" data-lightbox="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" data-category="team">
+                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Équipe VITRINE">
+                    </div>
+                    
+                    <div class="media-item" data-lightbox="https://images.unsplash.com/photo-1460925895917-afdab827c52f" data-category="projects">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f" alt="Marketing Stratégique">
+                    </div>
+                    
+                    <div class="media-item" data-lightbox="https://img.rocket.new/generatedImages/rocket_gen_img_12681ab67-1764666699439.png" data-category="projects">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_12681ab67-1764666699439.png" alt="Web & Mobile">
+                    </div>
+                    
+                    <div class="media-item" data-lightbox="https://images.unsplash.com/photo-1552664730-d307ca884978" data-category="behind-scenes">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978" alt="Coulisses">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VITRINE CONSULTING</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 1rem; line-height: 1.8;">
+                        Transformons ensemble votre communication en impact culturel. 
+                        Expertise stratégique et créative au service de votre vision.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Agence / Services</a></li>
+                        <li><a href="projects.html">Projets</a></li>
+                        <li><a href="media-gallery.html">Galerie</a></li>
+                        <li><a href="clients-and-partners.html">Clients & Partenaires</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="#">Mentions Légales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 VITRINE CONSULTING. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Gallery Filter
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.gallery-filter-btn');
+            const mediaItems = document.querySelectorAll('.media-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    mediaItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox for gallery
+            mediaItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.getAttribute('data-lightbox');
+                    if (imgSrc) {
+                        const lightbox = document.querySelector('.lightbox');
+                        const lightboxImg = lightbox.querySelector('img');
+                        lightboxImg.src = imgSrc;
+                        lightbox.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VITRINE CONSULTING - Transformons votre communication en impact culturel. Agence de communication et consulting au Cameroun.">
+    <title>Accueil - VITRINE CONSULTING</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.JPG.jpeg" alt="VITRINE CONSULTING" loading="eager" width="160" height="48">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active" data-i18n="nav.home">Accueil</a></li>
+                    <li><a href="services.html" data-i18n="nav.agency">Agence</a></li>
+                    <li><a href="projects.html" data-i18n="nav.projects">Projets</a></li>
+                    <li><a href="media-gallery.html" data-i18n="nav.gallery">Galerie</a></li>
+                    <li><a href="clients-and-partners.html" data-i18n="nav.clients">Clients & Partenaires</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+            </div>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section (vidéo en fond) -->
+        <section class="hero hero-with-video">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" loading="lazy" src="assets/videos/marie.mp4"></video>
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1 data-i18n="hero.title">
+                    Transformons votre communication en <span class="brand-green">impact culturel</span>
+                </h1>
+                <p data-i18n="hero.subtitle">
+                    Où la stratégie rencontre la créativité. Votre vision, amplifiée par notre expertise dans le paysage médiatique camerounais.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="contact.html" class="btn btn-primary" data-i18n="hero.cta_primary">Consultation Gratuite</a>
+                    <a href="projects.html" class="btn btn-secondary hero-btn-outline" data-i18n="hero.cta_secondary">Voir nos réalisations</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Metrics Section -->
+        <section class="metrics section">
+            <div class="container">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" data-counter="2500000" data-suffix="+">0</div>
+                        <div class="metric-label" data-i18n="metrics.visits">Visites</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" data-counter="850000" data-suffix="+">0</div>
+                        <div class="metric-label" data-i18n="metrics.audience">Audience</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" data-counter="1200" data-suffix="+">0</div>
+                        <div class="metric-label" data-i18n="metrics.projects">Projets</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" data-counter="180" data-suffix="+">0</div>
+                        <div class="metric-label" data-i18n="metrics.partners">Partenaires</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section class="section">
+            <div class="container">
+                <h2 style="font-family: var(--font-headline); font-size: 2.5rem; text-align: center; margin-bottom: 3rem;" data-i18n="featured.title">
+                    Projets en Vedette
+                </h2>
+                <div class="projects-grid">
+                    <div class="project-card" data-category="media">
+                        <img src="https://images.unsplash.com/photo-1732371481436-c4510ceea581" alt="ICILABOUF" class="project-image" loading="lazy" decoding="async">
+                        <div class="project-content">
+                            <div class="project-category" data-i18n="projects.icilabouf.category">Média Jeunesse</div>
+                            <h3 class="project-title">ICILABOUF</h3>
+                            <p class="project-description" data-i18n="projects.icilabouf.description">
+                                Plateforme média innovante ciblant les jeunes camerounais avec du contenu culturel engageant et des événements immersifs qui créent des connexions authentiques.
+                            </p>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.875rem;">
+                                <span><strong>500K+</strong> Reach</span>
+                                <span><strong>85%</strong> Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="education">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16fb3ceb8-1769245706130.png" alt="Afterbac" class="project-image" loading="lazy" decoding="async">
+                        <div class="project-content">
+                            <div class="project-category" data-i18n="projects.afterbac.category">Éducation & Orientation</div>
+                            <h3 class="project-title">Afterbac</h3>
+                            <p class="project-description" data-i18n="projects.afterbac.description">
+                                Solution complète d'orientation post-bac aidant les étudiants camerounais à naviguer leurs choix académiques avec confiance et clarté.
+                            </p>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.875rem;">
+                                <span><strong>200K+</strong> Reach</span>
+                                <span><strong>92%</strong> Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="corporate">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b6d75657-1766483971279.png" alt="Campagne Stratégique PME" class="project-image" loading="lazy" decoding="async">
+                        <div class="project-content">
+                            <div class="project-category" data-i18n="projects.pme.category">Communication Corporate</div>
+                            <h3 class="project-title" data-i18n="projects.pme.title">Campagne Stratégique PME</h3>
+                            <p class="project-description" data-i18n="projects.pme.description">
+                                Transformation digitale complète pour une PME camerounaise, incluant stratégie de contenu, présence sociale et événements de lancement.
+                            </p>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.875rem;">
+                                <span><strong>150K+</strong> Reach</span>
+                                <span><strong>78%</strong> Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Messages Section -->
+        <section class="section" style="background: var(--secondary);">
+            <div class="container">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <h2 style="font-family: var(--font-headline); font-size: 2.5rem; margin-bottom: 2rem;" data-i18n="mission.title">
+                        Notre Mission
+                    </h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem;" data-i18n="mission.paragraph1">
+                        Chez VITRINE CONSULTING, nous croyons que chaque marque a une histoire unique à raconter. 
+                        Notre mission est de transformer ces histoires en expériences mémorables qui résonnent avec votre audience.
+                    </p>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8;" data-i18n="mission.paragraph2">
+                        Nous combinons créativité, stratégie et expertise technique pour créer des solutions 
+                        de communication qui génèrent un impact réel et mesurable.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Client Logos Section -->
+        <section class="section">
+            <div class="container">
+                <h2 style="font-family: var(--font-headline); font-size: 2rem; text-align: center; margin-bottom: 3rem;" data-i18n="trust.title">
+                    Ils nous font confiance
+                </h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; align-items: center; opacity: 0.7;">
+                    <div style="text-align: center; padding: 1rem; background: var(--secondary); border-radius: 0.5rem;">
+                        <div style="height: 60px; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--text-secondary);">
+                            Client 1
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: var(--secondary); border-radius: 0.5rem;">
+                        <div style="height: 60px; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--text-secondary);">
+                            Client 2
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: var(--secondary); border-radius: 0.5rem;">
+                        <div style="height: 60px; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--text-secondary);">
+                            Client 3
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: var(--secondary); border-radius: 0.5rem;">
+                        <div style="height: 60px; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--text-secondary);">
+                            Client 4
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white; text-align: center;">
+            <div class="container">
+                <h2 style="font-family: var(--font-headline); font-size: 2.5rem; margin-bottom: 1.5rem;" data-i18n="cta.title">
+                    Prêt à transformer votre communication ?
+                </h2>
+                <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;" data-i18n="cta.text">
+                    Discutons de votre projet et découvrons comment nous pouvons créer un impact ensemble.
+                </p>
+                <a href="contact.html" class="btn" style="background: white; color: var(--primary);" data-i18n="cta.button">
+                    Prendre contact
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VITRINE CONSULTING</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 1rem; line-height: 1.8;" data-i18n="footer.about">
+                        Transformons ensemble votre communication en impact culturel. 
+                        Expertise stratégique et créative au service de votre vision.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="footer.navigation.title">Navigation</h3>
+                    <ul>
+                        <li><a href="index.html" data-i18n="footer.navigation.home">Accueil</a></li>
+                        <li><a href="services.html" data-i18n="footer.navigation.agency">Agence / Services</a></li>
+                        <li><a href="projects.html" data-i18n="footer.navigation.projects">Projets</a></li>
+                        <li><a href="media-gallery.html" data-i18n="footer.navigation.gallery">Galerie</a></li>
+                        <li><a href="clients-and-partners.html" data-i18n="footer.navigation.clients">Clients & Partenaires</a></li>
+                        <li><a href="contact.html" data-i18n="footer.navigation.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="footer.legal.title">Légal</h3>
+                    <ul>
+                        <li><a href="#" data-i18n="footer.legal.mentions">Mentions Légales</a></li>
+                        <li><a href="#" data-i18n="footer.legal.privacy">Politique de Confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">
+                    &copy; 2026 VITRINE CONSULTING. Tous droits réservés.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+</body>
+</html>

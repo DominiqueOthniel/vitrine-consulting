@@ -1,0 +1,231 @@
+/* Fonts chargées via next/font dans layout.tsx - pas besoin d'@import */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Logo: vert lime (icône) + bleu (texte/arc) + blanc */
+    /* Primary = vert du logo (CTA, éléments clés) */
+    --color-primary: #2ECC71;
+    --color-primary-foreground: #FFFFFF;
+
+    /* Secondary = bleu plus foncé (header, blocs secondaires) */
+    --color-secondary: #1E4976;
+    --color-secondary-foreground: #FFFFFF;
+
+    /* Accent = bleu du logo (surbrillance, liens) */
+    --color-accent: #3498DB;
+    --color-accent-foreground: #FFFFFF;
+
+    /* Background */
+    --color-background: #FFFFFF;
+    --color-foreground: #1A1A1A;
+
+    /* Surface */
+    --color-card: #F0FDF4; /* léger fond vert très clair */
+    --color-card-foreground: #1A1A1A;
+
+    /* Popover */
+    --color-popover: #FFFFFF;
+    --color-popover-foreground: #1A1A1A;
+
+    /* Muted */
+    --color-muted: #F1F5F9;
+    --color-muted-foreground: #64748B;
+
+    /* Border & Input (légère teinte vert/bleu) */
+    --color-border: #DCFCE7;
+    --color-input: #E0F2FE;
+    --color-ring: #2ECC71;
+
+    /* Status */
+    --color-success: #2ECC71;
+    --color-success-foreground: #FFFFFF;
+    --color-warning: #F59E0B;
+    --color-warning-foreground: #FFFFFF;
+    --color-error: #EF4444;
+    --color-error-foreground: #FFFFFF;
+    --color-destructive: #EF4444;
+    --color-destructive-foreground: #FFFFFF;
+
+    /* Brand (couleurs du logo) */
+    --color-brand-green: #22C55E; /* vert un peu plus profond */
+    --color-brand-blue: #3498DB;
+    --color-brand-dark: #1E4976;
+    --color-conversion-accent: #2980B9;
+    --color-trust-builder: #1E4976;
+    --color-text-secondary: #64748B;
+    --color-cta-urgent: #E74C3C;
+
+    /* Spacing */
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body), sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headline), serif;
+  }
+}
+
+@layer utilities {
+  .font-headline {
+    font-family: var(--font-headline), serif;
+  }
+  
+  .font-body {
+    font-family: var(--font-body), sans-serif;
+  }
+  
+  .font-cta {
+    font-family: var(--font-cta), sans-serif;
+  }
+  
+  .shadow-subtle {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .shadow-brand {
+    box-shadow: 0 4px 16px rgba(52, 152, 219, 0.2);
+  }
+  
+  .shadow-elevated {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .animate-scaleIn {
+    animation: scaleIn 0.4s ease-out;
+  }
+  
+  .animate-pulseGlow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+  
+  .animate-countUp {
+    animation: countUp 0.6s ease-out;
+  }
+  
+  .animate-constantPulse {
+    animation: constantPulse 3s ease-in-out infinite;
+  }
+  
+  .animate-hoverGlow {
+    animation: hoverGlow 0.6s ease-out;
+  }
+  
+  .animate-iconFloat {
+    animation: iconFloat 3s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 4s linear infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(52, 152, 219, 0.1), 0 0 0 0 rgba(52, 152, 219, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(52, 152, 219, 0.3), 0 0 0 8px rgba(52, 152, 219, 0);
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes constantPulse {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(52, 152, 219, 0.08), 0 0 0 0 rgba(52, 152, 219, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 6px 24px rgba(52, 152, 219, 0.15), 0 0 0 4px rgba(52, 152, 219, 0.1);
+    transform: scale(1.01);
+  }
+}
+
+@keyframes hoverGlow {
+  0% {
+    box-shadow: 0 4px 16px rgba(52, 152, 219, 0.15);
+  }
+  50% {
+    box-shadow: 0 12px 48px rgba(52, 152, 219, 0.4), 0 0 0 8px rgba(52, 152, 219, 0.2);
+  }
+  100% {
+    box-shadow: 0 8px 32px rgba(52, 152, 219, 0.3), 0 0 0 4px rgba(52, 152, 219, 0.15);
+  }
+}
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(5deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

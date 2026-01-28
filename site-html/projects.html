@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez nos projets et réalisations en communication, branding, web et marketing.">
+    <title>Projets - VITRINE CONSULTING</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .projects-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .projects-hero h1 {
+            font-family: var(--font-headline);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 2rem 0;
+            background: var(--secondary);
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: var(--font-cta);
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .project-card {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.JPG.jpeg" alt="VITRINE CONSULTING">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="services.html">Agence</a></li>
+                    <li><a href="projects.html" class="active">Projets</a></li>
+                    <li><a href="media-gallery.html">Galerie</a></li>
+                    <li><a href="clients-and-partners.html">Clients & Partenaires</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Projects Hero -->
+        <section class="projects-hero">
+            <div class="container">
+                <h1>Nos Projets</h1>
+                <p style="font-size: 1.125rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+                    Découvrez nos réalisations et l'impact que nous créons pour nos clients
+                </p>
+            </div>
+        </section>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="media">Média</button>
+            <button class="filter-btn" data-filter="education">Éducation</button>
+            <button class="filter-btn" data-filter="corporate">Corporate</button>
+            <button class="filter-btn" data-filter="branding">Branding</button>
+            <button class="filter-btn" data-filter="web">Web & Mobile</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <section class="section">
+            <div class="container">
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card" data-category="media">
+                        <img src="https://images.unsplash.com/photo-1732371481436-c4510ceea581" alt="ICILABOUF" class="project-image">
+                        <div class="project-content">
+                            <div class="project-category">Média Jeunesse</div>
+                            <h3 class="project-title">ICILABOUF</h3>
+                            <p class="project-description">
+                                Plateforme média innovante ciblant les jeunes camerounais avec du contenu culturel engageant et des événements immersifs.
+                            </p>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.875rem;">
+                                <span><strong>500K+</strong> Reach</span>
+                                <span><strong>85%</strong> Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card" data-category="education">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16fb3ceb8-1769245706130.png" alt="Afterbac" class="project-image">
+                        <div class="project-content">
+                            <div class="project-category">Éducation & Orientation</div>
+                            <h3 class="project-title">Afterbac</h3>
+                            <p class="project-description">
+                                Solution complète d'orientation post-bac aidant les étudiants camerounais à naviguer leurs choix académiques.
+                            </p>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.875rem;">
+                                <span><strong>200K+</strong> Reach</span>
+                                <span><strong>92%</strong> Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card" data-category="corporate">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b6d75657-1766483971279.png" alt="Campagne Stratégique PME" class="project-image">
+                        <div class="project-content">
+                            <div class="project-category">Communication Corporate</div>
+                            <h3 class="project-title">Campagne Stratégique PME</h3>
+                            <p class="project-description">
+                                Transformation digitale complète pour une PME camerounaise, incluant stratégie de contenu et événements.
+                            </p>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.875rem;">
+                                <span><strong>150K+</strong> Reach</span>
+                                <span><strong>78%</strong> Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-card" data-category="branding">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_183be303d-1766470449787.png" alt="Rebranding Premium" class="project-image">
+                        <div class="project-content">
+                            <div class="project-category">Branding</div>
+                            <h3 class="project-title">Rebranding Premium</h3>
+                            <p class="project-description">
+                                Identité visuelle complète pour une marque de luxe, incluant logo, charte graphique et packaging.
+                            </p>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.875rem;">
+                                <span><strong>+40%</strong> Notoriété</span>
+                                <span><strong>Premium</strong> Positionnement</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card" data-category="web">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_12681ab67-1764666699439.png" alt="E-commerce Platform" class="project-image">
+                        <div class="project-content">
+                            <div class="project-category">Web & Mobile</div>
+                            <h3 class="project-title">Plateforme E-commerce</h3>
+                            <p class="project-description">
+                                Développement d'une plateforme e-commerce sur-mesure avec application mobile et optimisation UX.
+                            </p>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.875rem;">
+                                <span><strong>+120%</strong> Conversions</span>
+                                <span><strong>50K</strong> Users</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card" data-category="media">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978" alt="Campagne Social Media" class="project-image">
+                        <div class="project-content">
+                            <div class="project-category">Communication</div>
+                            <h3 class="project-title">Campagne Social Media</h3>
+                            <p class="project-description">
+                                Stratégie de contenu et campagnes publicitaires pour une marque B2B sur les réseaux sociaux.
+                            </p>
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.875rem;">
+                                <span><strong>2M</strong> Impressions</span>
+                                <span><strong>15%</strong> Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VITRINE CONSULTING</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 1rem; line-height: 1.8;">
+                        Transformons ensemble votre communication en impact culturel. 
+                        Expertise stratégique et créative au service de votre vision.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Agence / Services</a></li>
+                        <li><a href="projects.html">Projets</a></li>
+                        <li><a href="media-gallery.html">Galerie</a></li>
+                        <li><a href="clients-and-partners.html">Clients & Partenaires</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="#">Mentions Légales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 VITRINE CONSULTING. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

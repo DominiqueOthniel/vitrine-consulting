@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Devis de développement - Application Web VITRINE CONSULTING">
+    <title>Devis - VITRINE CONSULTING</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .devis-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .devis-header {
+            background: linear-gradient(135deg, var(--brand-green) 0%, var(--accent) 100%);
+            color: var(--primary-foreground);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .devis-header h1 {
+            font-family: var(--font-headline);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .devis-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .devis-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .info-block h3 {
+            color: var(--brand-green);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .info-block p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .devis-content {
+            padding: 2rem;
+        }
+
+        .devis-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-family: var(--font-headline);
+            font-size: 1.75rem;
+            color: var(--brand-green);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--accent);
+            font-weight: 700;
+        }
+
+        .service-item {
+            background: #ecfdf5;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--brand-green);
+            border-radius: 0.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .service-item h4 {
+            color: #166534;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .service-item > p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .service-details {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--text-primary);
+            position: relative;
+            padding-left: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--brand-green);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .price {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brand-green);
+            font-family: var(--font-headline);
+        }
+
+        .price small {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 0.25rem;
+            font-weight: normal;
+        }
+
+        .devis-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .devis-table thead {
+            background: var(--brand-green);
+            color: white;
+        }
+
+        .devis-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .devis-table th:last-child {
+            text-align: right;
+        }
+
+        .devis-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--secondary);
+        }
+
+        .devis-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .devis-table .description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .devis-table .amount {
+            text-align: right;
+            font-weight: 600;
+            color: var(--brand-green);
+            font-family: var(--font-headline);
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, var(--brand-green) 0%, var(--accent) 100%);
+            color: white;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .total-row.final {
+            font-size: 2rem;
+            font-weight: 700;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(255,255,255,0.3);
+            margin-top: 1.5rem;
+            margin-bottom: 0;
+            font-family: var(--font-headline);
+        }
+
+        .notes {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        .notes h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .notes ul {
+            margin-left: 1.5rem;
+            color: #78350f;
+        }
+
+        .notes li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .signature-section {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--secondary);
+        }
+
+        .signature-box {
+            text-align: center;
+        }
+
+        .signature-box h4 {
+            color: var(--brand-green);
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+        }
+
+        .signature-line {
+            border-top: 2px solid var(--brand-green);
+            margin-top: 4rem;
+            padding-top: 0.75rem;
+        }
+
+        @media print {
+            header, footer {
+                display: none;
+            }
+            .devis-container {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .devis-info {
+                grid-template-columns: 1fr;
+            }
+            .service-details {
+                grid-template-columns: 1fr;
+            }
+            .signature-section {
+                grid-template-columns: 1fr;
+            }
+            .devis-header h1 {
+                font-size: 2rem;
+            }
+            .devis-table {
+                font-size: 0.875rem;
+            }
+            .devis-table th,
+            .devis-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.JPG.jpeg" alt="VITRINE CONSULTING" loading="eager" width="160" height="48">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="services.html">Agence</a></li>
+                    <li><a href="projects.html">Projets</a></li>
+                    <li><a href="media-gallery.html">Galerie</a></li>
+                    <li><a href="clients-and-partners.html">Clients & Partenaires</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+            </div>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main style="margin-top: 80px; padding: 2rem 1rem;">
+        <div class="devis-container">
+            <div class="devis-header">
+                <h1>DEVIS DE DÉVELOPPEMENT</h1>
+                <p>Application Web VITRINE CONSULTING</p>
+            </div>
+
+            <div class="devis-info">
+                <div class="info-block">
+                    <h3>Client</h3>
+                    <p><strong>VITRINE CONSULTING</strong><br>
+                    Agence de Communication & Consulting<br>
+                    Cameroun</p>
+                </div>
+                <div class="info-block">
+                    <h3>Devis</h3>
+                    <p><strong>Date :</strong> 27 Janvier 2026<br>
+                    <strong>Référence :</strong> DEV-VC-2026-001<br>
+                    <strong>Validité :</strong> 30 jours</p>
+                </div>
+            </div>
+
+            <div class="devis-content">
+                <div class="devis-section">
+                    <h2 class="section-title">Description du Projet</h2>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        Développement d'un site web statique moderne et responsive pour l'agence VITRINE CONSULTING. 
+                        Le site comprend une vitrine professionnelle avec contenu dynamique via JavaScript, 
+                        galerie média interactive, présentation des services et projets, formulaire de contact, 
+                        système multilingue (FR/EN/DE), et une interface utilisateur optimisée pour tous les appareils. 
+                        Technologies utilisées : HTML5, CSS3 avec variables CSS, JavaScript vanilla, Google Fonts.
+                    </p>
+                </div>
+
+                <div class="devis-section">
+                    <h2 class="section-title">Détail des Prestations</h2>
+
+                    <div class="service-item">
+                        <h4>1. Architecture & Configuration Technique</h4>
+                        <p>Mise en place de l'infrastructure HTML5 avec CSS3 moderne, système de design personnalisé, 
+                        optimisation des performances et SEO.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>HTML5 sémantique et accessible</li>
+                                <li>CSS3 avec variables personnalisées</li>
+                                <li>Système de design cohérent</li>
+                                <li>Optimisation SEO et métadonnées</li>
+                                <li>Configuration responsive et mobile-first</li>
+                                <li>JavaScript vanilla optimisé</li>
+                            </ul>
+                            <div class="price">
+                                18 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>2. Page d'Accueil Interactive</h4>
+                        <p>Développement de la page d'accueil avec vidéo intro, hero section, métriques clés, 
+                        messages de marque, projets en vedette et logos clients.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>Section vidéo intro avec contrôles</li>
+                                <li>Hero section avec CTA</li>
+                                <li>Affichage des métriques clés</li>
+                                <li>Carrousel de projets</li>
+                                <li>Logos clients animés</li>
+                                <li>Popup de bienvenue</li>
+                            </ul>
+                            <div class="price">
+                                25 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>3. Page Services & Agence</h4>
+                        <p>Présentation détaillée des 5 services principaux avec interactivité, calculatrice ROI, 
+                        widget de consultation et comparaison de services.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>5 services détaillés avec icônes</li>
+                                <li>Calculatrice ROI interactive</li>
+                                <li>Widget de consultation</li>
+                                <li>Comparaison de services</li>
+                                <li>Infographie méthodologique</li>
+                                <li>Section vidéo services</li>
+                            </ul>
+                            <div class="price">
+                                32 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>4. Page Projets</h4>
+                        <p>Galerie de projets avec système de filtres, cartes de projets interactives, 
+                        modal d'inquiry et statistiques globales.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>Galerie de projets avec filtres</li>
+                                <li>Cartes projets interactives</li>
+                                <li>Modal de demande d'information</li>
+                                <li>Vue d'ensemble statistiques</li>
+                                <li>Design responsive</li>
+                            </ul>
+                            <div class="price">
+                                20 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>5. Galerie Média Interactive</h4>
+                        <p>Gestionnaire de médias avec filtres avancés, lightbox, slider et grille responsive 
+                        pour photos et vidéos.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>Système de filtres par catégorie</li>
+                                <li>Lightbox pour visualisation</li>
+                                <li>Slider de médias</li>
+                                <li>Grille responsive</li>
+                                <li>Gestion photos et vidéos</li>
+                            </ul>
+                            <div class="price">
+                                17 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>6. Page Clients & Partenaires</h4>
+                        <p>Présentation des clients et partenaires avec logos, témoignages, statistiques, 
+                        histoires de succès et timeline de partenariats.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>Grille de logos clients</li>
+                                <li>Carrousel de témoignages</li>
+                                <li>Section statistiques</li>
+                                <li>Histoires de succès</li>
+                                <li>Timeline de partenariats</li>
+                                <li>Reconnaissance industrielle</li>
+                            </ul>
+                            <div class="price">
+                                19 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>7. Page À Propos</h4>
+                        <p>Présentation de l'agence avec histoire, équipe, méthodologie, récompenses, 
+                        culture d'entreprise et témoignages.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>Histoire de l'entreprise</li>
+                                <li>Présentation de l'équipe</li>
+                                <li>Méthodologie détaillée</li>
+                                <li>Récompenses et reconnaissances</li>
+                                <li>Galerie vidéo culture</li>
+                                <li>Carrousel témoignages</li>
+                            </ul>
+                            <div class="price">
+                                23 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>8. Formulaire de Contact & Intégration</h4>
+                        <p>Formulaire de contact fonctionnel avec validation JavaScript, intégration avec service 
+                        externe (Formspree/Netlify Forms) pour traitement des messages.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>Formulaire de contact complet</li>
+                                <li>Validation côté client (JavaScript)</li>
+                                <li>Intégration service externe</li>
+                                <li>Gestion des erreurs</li>
+                                <li>Messages de confirmation</li>
+                                <li>Protection anti-spam</li>
+                            </ul>
+                            <div class="price">
+                                14 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>9. Composants UI & Design System</h4>
+                        <p>Développement de composants réutilisables, système de design cohérent, 
+                        icônes personnalisées et animations.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>Header responsive avec navigation</li>
+                                <li>Footer avec liens et réseaux sociaux</li>
+                                <li>Composants UI réutilisables</li>
+                                <li>Système d'icônes</li>
+                                <li>Animations et transitions</li>
+                                <li>Design system cohérent</li>
+                            </ul>
+                            <div class="price">
+                                16 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>10. Optimisation & Tests</h4>
+                        <p>Optimisation des performances, tests de compatibilité, responsive design, 
+                        accessibilité et optimisation SEO.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>Optimisation des performances</li>
+                                <li>Tests multi-navigateurs</li>
+                                <li>Responsive design complet</li>
+                                <li>Accessibilité (WCAG)</li>
+                                <li>Optimisation SEO avancée</li>
+                                <li>Lazy loading et code splitting</li>
+                            </ul>
+                            <div class="price">
+                                13 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>11. Documentation & Formation</h4>
+                        <p>Documentation technique complète, guide d'utilisation, formation à la gestion 
+                        du contenu HTML et support initial.</p>
+                        <div class="service-details">
+                            <ul class="service-features">
+                                <li>Documentation technique HTML/CSS/JS</li>
+                                <li>Guide d'utilisation et modification</li>
+                                <li>Formation à la gestion du contenu</li>
+                                <li>Documentation du système multilingue</li>
+                                <li>Support initial (1 mois)</li>
+                            </ul>
+                            <div class="price">
+                                10 000 FCFA
+                                <small>Forfait</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="devis-table">
+                    <thead>
+                        <tr>
+                            <th>Prestation</th>
+                            <th>Description</th>
+                            <th>Montant (FCFA)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Architecture & Configuration</strong></td>
+                            <td class="description">HTML5, CSS3 avec variables, JavaScript vanilla, SEO</td>
+                            <td class="amount">18 000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Page d'Accueil</strong></td>
+                            <td class="description">Vidéo intro, hero, métriques, projets, logos</td>
+                            <td class="amount">25 000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Page Services</strong></td>
+                            <td class="description">5 services, ROI calculator, widgets interactifs</td>
+                            <td class="amount">32 000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Page Projets</strong></td>
+                            <td class="description">Galerie avec filtres, modals, statistiques</td>
+                            <td class="amount">20 000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Galerie Média</strong></td>
+                            <td class="description">Lightbox, filtres, slider, grille responsive</td>
+                            <td class="amount">17 000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clients & Partenaires</strong></td>
+                            <td class="description">Logos, témoignages, stats, success stories</td>
+                            <td class="amount">19 000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Page À Propos</strong></td>
+                            <td class="description">Histoire, équipe, méthodologie, récompenses</td>
+                            <td class="amount">23 000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contact & Intégration</strong></td>
+                            <td class="description">Formulaire, validation JS, intégration service externe</td>
+                            <td class="amount">14 000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Composants UI</strong></td>
+                            <td class="description">Header, footer, design system, animations</td>
+                            <td class="amount">16 000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Optimisation & Tests</strong></td>
+                            <td class="description">Performance, responsive, SEO, accessibilité</td>
+                            <td class="amount">13 000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Documentation</strong></td>
+                            <td class="description">Docs technique, guide, formation, support</td>
+                            <td class="amount">10 000</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="total-section">
+                    <div class="total-row final">
+                        <span>TOTAL</span>
+                        <span>250 000 FCFA</span>
+                    </div>
+                </div>
+
+                <div class="notes">
+                    <h4>Notes Importantes</h4>
+                    <ul>
+                        <li><strong>Durée estimée :</strong> 1 semaine de développement</li>
+                        <li><strong>Paiement :</strong> 50% à la commande, 50% à la livraison</li>
+                        <li><strong>Hébergement :</strong> Non inclus (recommandation : Netlify, Vercel, ou GitHub Pages)</li>
+                        <li><strong>Domaine :</strong> Non inclus (achat séparé requis)</li>
+                        <li><strong>Contenu :</strong> Les textes et images doivent être fournis par le client</li>
+                        <li><strong>Modifications :</strong> 1 cycle de révision inclus, modifications supplémentaires facturées à 15 000 FCFA</li>
+                        <li><strong>Maintenance :</strong> Support technique disponible (devis séparé)</li>
+                        <li><strong>Garantie :</strong> 1 mois de garantie sur les bugs et dysfonctionnements</li>
+                    </ul>
+                </div>
+
+                <div class="signature-section">
+                    <div class="signature-box">
+                        <h4>Le Prestataire</h4>
+                        <div class="signature-line">
+                            <p>Nom et Signature</p>
+                        </div>
+                    </div>
+                    <div class="signature-box">
+                        <h4>Le Client</h4>
+                        <div class="signature-line">
+                            <p>Nom et Signature</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VITRINE CONSULTING</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 1rem; line-height: 1.8;">
+                        Transformons ensemble votre communication en impact culturel. 
+                        Expertise stratégique et créative au service de votre vision.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Agence / Services</a></li>
+                        <li><a href="projects.html">Projets</a></li>
+                        <li><a href="media-gallery.html">Galerie</a></li>
+                        <li><a href="clients-and-partners.html">Clients & Partenaires</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="#">Mentions Légales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 VITRINE CONSULTING. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+</body>
+</html>

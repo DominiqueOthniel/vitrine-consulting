@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez nos clients et partenaires - VITRINE CONSULTING">
+    <title>Clients & Partenaires - VITRINE CONSULTING</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .clients-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .clients-hero h1 {
+            font-family: var(--font-headline);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+        
+        .client-logo {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+        
+        .client-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .testimonials {
+            background: var(--secondary);
+            padding: 4rem 0;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-text {
+            font-size: 1.125rem;
+            font-style: italic;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.JPG.jpeg" alt="VITRINE CONSULTING">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="services.html">Agence</a></li>
+                    <li><a href="projects.html">Projets</a></li>
+                    <li><a href="media-gallery.html">Galerie</a></li>
+                    <li><a href="clients-and-partners.html" class="active">Clients & Partenaires</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Clients Hero -->
+        <section class="clients-hero">
+            <div class="container">
+                <h1>Clients & Partenaires</h1>
+                <p style="font-size: 1.125rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+                    Des partenariats durables qui créent de la valeur
+                </p>
+            </div>
+        </section>
+
+        <!-- Clients Grid -->
+        <section class="section">
+            <div class="container">
+                <h2 style="font-family: var(--font-headline); font-size: 2rem; text-align: center; margin-bottom: 3rem;">
+                    Ils nous font confiance
+                </h2>
+                <div class="clients-grid">
+                    <div class="client-logo">Client 1</div>
+                    <div class="client-logo">Client 2</div>
+                    <div class="client-logo">Client 3</div>
+                    <div class="client-logo">Client 4</div>
+                    <div class="client-logo">Client 5</div>
+                    <div class="client-logo">Client 6</div>
+                    <div class="client-logo">Client 7</div>
+                    <div class="client-logo">Client 8</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 style="font-family: var(--font-headline); font-size: 2rem; text-align: center; margin-bottom: 3rem;">
+                    Témoignages
+                </h2>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "VITRINE CONSULTING a transformé notre présence digitale. Leur approche stratégique et leur créativité ont considérablement augmenté notre visibilité et notre engagement."
+                    </p>
+                    <p class="testimonial-author">— Directeur Marketing, Entreprise X</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Un partenaire de confiance qui comprend nos besoins et propose des solutions innovantes. Leur accompagnement a été déterminant pour notre croissance."
+                    </p>
+                    <p class="testimonial-author">— CEO, Startup Y</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Excellente collaboration ! L'équipe est professionnelle, réactive et toujours à l'écoute. Nous recommandons vivement leurs services."
+                    </p>
+                    <p class="testimonial-author">— Responsable Communication, Organisation Z</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VITRINE CONSULTING</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 1rem; line-height: 1.8;">
+                        Transformons ensemble votre communication en impact culturel. 
+                        Expertise stratégique et créative au service de votre vision.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Agence / Services</a></li>
+                        <li><a href="projects.html">Projets</a></li>
+                        <li><a href="media-gallery.html">Galerie</a></li>
+                        <li><a href="clients-and-partners.html">Clients & Partenaires</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="#">Mentions Légales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 VITRINE CONSULTING. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
