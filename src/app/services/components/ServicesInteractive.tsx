@@ -104,6 +104,14 @@ const ServicesInteractive: React.FC = () => {
   return (
     <div className="space-y-16">
       <section className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl lg:text-4xl font-headline font-bold text-foreground mb-4">
+            Nos cinq piliers
+          </h2>
+          <p className="text-lg text-muted-foreground font-body max-w-2xl mx-auto">
+            Branding, web & mobile, communication multicanal, marketing stratégique et accompagnement sur-mesure.
+          </p>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {services.map((service) =>
           <ServiceCard

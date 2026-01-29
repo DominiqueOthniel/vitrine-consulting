@@ -1,9 +1,7 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-
-const ServicesVideoSection = dynamic(() => import('./ServicesVideoSection'), { ssr: false });
-const ServicesInteractive = dynamic(() => import('./ServicesInteractive'), { ssr: false });
+import ServicesVideoSection from './ServicesVideoSection';
+import ServicesInteractive from './ServicesInteractive';
 
 export default function ServicesClient() {
   return (
