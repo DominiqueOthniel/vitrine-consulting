@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import AppImage from '@/components/ui/AppImage';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface Client {
   id: number;
@@ -18,6 +20,8 @@ interface ClientLogosGridProps {
 }
 
 const ClientLogosGrid: React.FC<ClientLogosGridProps> = ({ clients }) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -31,13 +35,13 @@ const ClientLogosGrid: React.FC<ClientLogosGridProps> = ({ clients }) => {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-headline font-bold text-foreground mb-4">
-              Nos Clients de Confiance
+              {t.clientsPartners.clientsSectionTitle}
             </h2>
             <p className="text-base lg:text-lg font-body text-muted-foreground max-w-2xl mx-auto">
-              Des partenariats stratégiques avec des marques leaders qui nous font confiance
+              {t.clientsPartners.clientsSectionSubtitle}
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {clients.map((client) => (
               <div
                 key={client.id}
@@ -70,7 +74,7 @@ const ClientLogosGrid: React.FC<ClientLogosGridProps> = ({ clients }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {clients.map((client) => (
             <div
               key={client.id}
@@ -109,7 +113,7 @@ const ClientLogosGrid: React.FC<ClientLogosGridProps> = ({ clients }) => {
                 <button
                   onClick={() => setSelectedClient(null)}
                   className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Fermer"
+                  aria-label={t.clientsPartners.closeAria}
                 >
                   <svg
                     className="w-6 h-6"
@@ -149,7 +153,7 @@ const ClientLogosGrid: React.FC<ClientLogosGridProps> = ({ clients }) => {
 
                 <div>
                   <h4 className="text-sm font-cta font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-                    Description
+                    {t.clientsPartners.descriptionLabel}
                   </h4>
                   <p className="text-base font-body text-foreground leading-relaxed">
                     {selectedClient.description}

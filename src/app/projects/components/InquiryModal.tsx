@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface InquiryModalProps {
   isOpen: boolean;
@@ -10,6 +12,8 @@ interface InquiryModalProps {
 }
 
 const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   const [isHydrated, setIsHydrated] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -99,10 +103,10 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
                 <Icon name="CheckCircleIcon" size={40} className="text-success" />
               </div>
               <h3 className="text-2xl font-headline font-bold text-foreground mb-2">
-                Demande Envoyée!
+                {t.form.requestSent}
               </h3>
               <p className="text-sm font-body text-muted-foreground">
-                Notre équipe vous contactera sous 24-48 heures.
+                {t.form.weWillContact}
               </p>
             </div>
           ) : (
@@ -110,7 +114,7 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-cta font-semibold text-foreground mb-2">
-                    Nom Complet *
+                    {t.form.fullName} *
                   </label>
                   <input
                     type="text"
@@ -125,7 +129,7 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
 
                 <div>
                   <label className="block text-sm font-cta font-semibold text-foreground mb-2">
-                    Email Professionnel *
+                    {t.form.professionalEmail} *
                   </label>
                   <input
                     type="email"
@@ -142,7 +146,7 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-cta font-semibold text-foreground mb-2">
-                    Entreprise *
+                    {t.form.company} *
                   </label>
                   <input
                     type="text"
@@ -151,13 +155,13 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-background border border-border rounded-md text-sm font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
-                    placeholder="Nom de l'entreprise"
+                    placeholder={t.form.companyPlaceholder}
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-cta font-semibold text-foreground mb-2">
-                    Téléphone *
+                    {t.form.phone} *
                   </label>
                   <input
                     type="tel"
@@ -173,7 +177,7 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
 
               <div>
                 <label className="block text-sm font-cta font-semibold text-foreground mb-2">
-                  Budget Estimé *
+                  {t.form.budget} *
                 </label>
                 <select
                   name="budget"
@@ -182,7 +186,7 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
                   required
                   className="w-full px-4 py-3 bg-background border border-border rounded-md text-sm font-body text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 appearance-none cursor-pointer"
                 >
-                  <option value="">Sélectionnez votre budget</option>
+                  <option value="">{t.form.selectBudget}</option>
                   <option value="5k-10k">5 000€ - 10 000€</option>
                   <option value="10k-25k">10 000€ - 25 000€</option>
                   <option value="25k-50k">25 000€ - 50 000€</option>
@@ -192,7 +196,7 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
 
               <div>
                 <label className="block text-sm font-cta font-semibold text-foreground mb-2">
-                  Message *
+                  {t.form.message} *
                 </label>
                 <textarea
                   name="message"
@@ -201,14 +205,14 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
                   required
                   rows={4}
                   className="w-full px-4 py-3 bg-background border border-border rounded-md text-sm font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none"
-                  placeholder="Décrivez vos objectifs et besoins pour ce partenariat..."
+                  placeholder={t.form.messagePlaceholder}
                 />
               </div>
 
               <div className="flex items-start space-x-3 p-4 bg-muted rounded-md">
                 <Icon name="InformationCircleIcon" size={20} className="text-primary flex-shrink-0 mt-0.5" />
                 <p className="text-xs font-body text-muted-foreground">
-                  En soumettant ce formulaire, vous acceptez d'être contacté par notre équipe concernant votre demande de partenariat. Vos données sont traitées conformément à notre politique de confidentialité.
+                  {t.form.disclaimer}
                 </p>
               </div>
 
@@ -218,7 +222,7 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
                   onClick={onClose}
                   className="flex-1 px-6 py-3 bg-muted text-foreground rounded-md text-sm font-cta font-semibold hover:bg-muted/80 transition-all duration-300"
                 >
-                  Annuler
+                  {t.form.cancel}
                 </button>
                 <button
                   type="submit"
@@ -228,11 +232,11 @@ const InquiryModal = ({ isOpen, onClose, projectTitle }: InquiryModalProps) => {
                   {isSubmitting ? (
                     <>
                       <Icon name="ArrowPathIcon" size={16} className="animate-spin" />
-                      <span>Envoi en cours...</span>
+                      <span>{t.form.sending}</span>
                     </>
                   ) : (
                     <>
-                      <span>Envoyer la Demande</span>
+                      <span>{t.form.sendRequest}</span>
                       <Icon name="PaperAirplaneIcon" size={16} />
                     </>
                   )}

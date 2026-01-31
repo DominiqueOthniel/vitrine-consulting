@@ -1,11 +1,15 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function NotFound() {
     const router = useRouter();
+    const { lang } = useLanguage();
+    const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
 
     const handleGoHome = () => {
         router?.push('/');
@@ -26,9 +30,9 @@ export default function NotFound() {
                     </div>
                 </div>
 
-                <h2 className="text-2xl font-medium text-onBackground mb-2">Page Not Found</h2>
+                <h2 className="text-2xl font-medium text-onBackground mb-2">{t.notFound.title}</h2>
                 <p className="text-onBackground/70 mb-8">
-                    The page you're looking for doesn't exist. Let's get you back!
+                    {t.notFound.message}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -37,7 +41,7 @@ export default function NotFound() {
                         className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200"
                     >
                         <Icon name="ArrowLeftIcon" size={16} />
-                        Go Back
+                        {t.notFound.goBack}
                     </button>
 
                     <button
@@ -45,7 +49,7 @@ export default function NotFound() {
                         className="inline-flex items-center justify-center gap-2 border border-border bg-background text-foreground px-6 py-3 rounded-lg font-medium hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                     >
                         <Icon name="HomeIcon" size={16} />
-                        Back to Home
+                        {t.notFound.backHome}
                     </button>
                 </div>
             </div>

@@ -1,11 +1,15 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function ServicesVideoSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -39,7 +43,7 @@ export default function ServicesVideoSection() {
           {isPlaying ? <Icon name="PauseIcon" size={24} /> : <Icon name="PlayIcon" size={24} className="ml-1" />}
         </button>
         <p className="absolute bottom-6 left-6 text-sm text-primary-foreground/90 font-body">
-          Équipe, méthodologie & coulisses
+          {t.services.videoLabel}
         </p>
       </div>
     </section>

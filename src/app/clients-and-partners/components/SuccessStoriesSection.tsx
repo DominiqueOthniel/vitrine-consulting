@@ -1,6 +1,10 @@
-import React from 'react';
+'use client';
+
+import React, { useMemo } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface SuccessMetric {
   label: string;
@@ -24,15 +28,17 @@ interface SuccessStoriesSectionProps {
 }
 
 const SuccessStoriesSection: React.FC<SuccessStoriesSectionProps> = ({ stories }) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   return (
     <section className="bg-background py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-headline font-bold text-foreground mb-4">
-            Histoires de Réussite
+            {t.clientsPartners.successStoriesTitle}
           </h2>
           <p className="text-base lg:text-lg font-body text-muted-foreground max-w-2xl mx-auto">
-            Découvrez comment nous avons transformé les défis de nos clients en succès mesurables
+            {t.clientsPartners.successStoriesSubtitle}
           </p>
         </div>
 
@@ -69,7 +75,7 @@ const SuccessStoriesSection: React.FC<SuccessStoriesSectionProps> = ({ stories }
                     <div className="flex items-center space-x-2 mb-2">
                       <Icon name="ExclamationTriangleIcon" size={20} className="text-warning" />
                       <h4 className="text-sm font-cta font-semibold text-muted-foreground uppercase tracking-wide">
-                        Défi
+                        {t.clientsPartners.challengeLabel}
                       </h4>
                     </div>
                     <p className="text-base font-body text-foreground leading-relaxed">
@@ -81,7 +87,7 @@ const SuccessStoriesSection: React.FC<SuccessStoriesSectionProps> = ({ stories }
                     <div className="flex items-center space-x-2 mb-2">
                       <Icon name="LightBulbIcon" size={20} className="text-accent" />
                       <h4 className="text-sm font-cta font-semibold text-muted-foreground uppercase tracking-wide">
-                        Solution
+                        {t.clientsPartners.solutionLabel}
                       </h4>
                     </div>
                     <p className="text-base font-body text-foreground leading-relaxed">
@@ -93,7 +99,7 @@ const SuccessStoriesSection: React.FC<SuccessStoriesSectionProps> = ({ stories }
                     <div className="flex items-center space-x-2 mb-2">
                       <Icon name="CheckCircleIcon" size={20} className="text-success" />
                       <h4 className="text-sm font-cta font-semibold text-muted-foreground uppercase tracking-wide">
-                        Résultats
+                        {t.clientsPartners.resultsLabel}
                       </h4>
                     </div>
                     <p className="text-base font-body text-foreground leading-relaxed mb-4">

@@ -1,13 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
 export default function ContactForm() {
   const searchParams = useSearchParams();
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   const [nom, setNom] = useState('');
   const [email, setEmail] = useState('');
   const [sujet, setSujet] = useState('');
@@ -17,16 +21,16 @@ export default function ContactForm() {
 
   useEffect(() => {
     const project = searchParams.get('project');
-    if (project) setSujet(`Projet : ${decodeURIComponent(project)}`);
-  }, [searchParams]);
+    if (project) setSujet(`${t.form.projectLabel}: ${decodeURIComponent(project)}`);
+  }, [searchParams, t.form.projectLabel]);
 
   const validate = () => {
     const e: Record<string, string> = {};
-    if (!nom.trim()) e.nom = 'Nom requis';
-    if (!email.trim()) e.email = 'Email requis';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = 'Email invalide';
-    if (!sujet.trim()) e.sujet = 'Sujet requis';
-    if (!message.trim()) e.message = 'Message requis';
+    if (!nom.trim()) e.nom = t.form.nameRequired;
+    if (!email.trim()) e.email = t.form.emailRequired;
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = t.form.emailInvalid;
+    if (!sujet.trim()) e.sujet = t.form.subjectRequired;
+    if (!message.trim()) e.message = t.form.messageRequired;
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -57,7 +61,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <label htmlFor="nom" className="block text-sm font-cta font-medium text-foreground mb-2">
-          Nom
+          {t.form.name}
         </label>
         <input
           id="nom"
@@ -67,14 +71,14 @@ export default function ContactForm() {
           className={`w-full px-4 py-3 rounded-lg border bg-background font-body ${
             errors.nom ? 'border-error' : 'border-border'
           } focus:ring-2 focus:ring-primary focus:border-transparent outline-none`}
-          placeholder="Votre nom"
+          placeholder={t.form.yourName}
         />
         {errors.nom && <p className="mt-1 text-sm text-error">{errors.nom}</p>}
       </div>
 
       <div>
         <label htmlFor="email" className="block text-sm font-cta font-medium text-foreground mb-2">
-          Email
+          {t.form.email}
         </label>
         <input
           id="email"
@@ -84,14 +88,14 @@ export default function ContactForm() {
           className={`w-full px-4 py-3 rounded-lg border bg-background font-body ${
             errors.email ? 'border-error' : 'border-border'
           } focus:ring-2 focus:ring-primary focus:border-transparent outline-none`}
-          placeholder="votre@email.com"
+          placeholder={t.form.yourEmail}
         />
         {errors.email && <p className="mt-1 text-sm text-error">{errors.email}</p>}
       </div>
 
       <div>
         <label htmlFor="sujet" className="block text-sm font-cta font-medium text-foreground mb-2">
-          Sujet
+          {t.form.subject}
         </label>
         <input
           id="sujet"
@@ -101,14 +105,14 @@ export default function ContactForm() {
           className={`w-full px-4 py-3 rounded-lg border bg-background font-body ${
             errors.sujet ? 'border-error' : 'border-border'
           } focus:ring-2 focus:ring-primary focus:border-transparent outline-none`}
-          placeholder="Sujet de votre message"
+          placeholder={t.form.subjectPlaceholder}
         />
         {errors.sujet && <p className="mt-1 text-sm text-error">{errors.sujet}</p>}
       </div>
 
       <div>
         <label htmlFor="message" className="block text-sm font-cta font-medium text-foreground mb-2">
-          Message
+          {t.form.message}
         </label>
         <textarea
           id="message"
@@ -118,7 +122,7 @@ export default function ContactForm() {
           className={`w-full px-4 py-3 rounded-lg border bg-background font-body resize-none ${
             errors.message ? 'border-error' : 'border-border'
           } focus:ring-2 focus:ring-primary focus:border-transparent outline-none`}
-          placeholder="Votre message..."
+          placeholder={t.form.yourMessage}
         />
         {errors.message && <p className="mt-1 text-sm text-error">{errors.message}</p>}
       </div>
@@ -126,12 +130,12 @@ export default function ContactForm() {
       {status === 'success' && (
         <div className="flex items-center gap-2 p-4 rounded-lg bg-success/10 text-success">
           <Icon name="CheckCircleIcon" size={24} />
-          <span>Message envoyé. Nous vous répondrons sous 24h.</span>
+          <span>{t.form.success}</span>
         </div>
       )}
       {status === 'error' && (
         <div className="p-4 rounded-lg bg-error/10 text-error">
-          Erreur lors de l&apos;envoi. Réessayez ou contactez-nous par email/téléphone.
+          {t.form.error}
         </div>
       )}
 
@@ -143,12 +147,12 @@ export default function ContactForm() {
         {status === 'loading' ? (
           <>
             <Icon name="ArrowPathIcon" size={20} className="animate-spin" />
-            Envoi en cours...
+            {t.form.sending}
           </>
         ) : (
           <>
             <Icon name="PaperAirplaneIcon" size={20} />
-            Envoyer
+            {t.form.send}
           </>
         )}
       </button>

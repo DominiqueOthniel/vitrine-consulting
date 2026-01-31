@@ -1,4 +1,9 @@
+'use client';
+
+import { useMemo } from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface StatsOverviewProps {
   stats: {
@@ -10,6 +15,8 @@ interface StatsOverviewProps {
 }
 
 const StatsOverview = ({ stats }: StatsOverviewProps) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
       <div className="bg-gradient-to-br from-primary to-conversion-accent rounded-lg p-6 text-white shadow-brand">
@@ -20,7 +27,7 @@ const StatsOverview = ({ stats }: StatsOverviewProps) => {
           </div>
         </div>
         <p className="text-4xl font-headline font-bold mb-2">{stats.totalProjects}</p>
-        <p className="text-sm font-body opacity-90">Projets Réalisés</p>
+        <p className="text-sm font-body opacity-90">{t.projects.statsProjects}</p>
       </div>
 
       <div className="bg-gradient-to-br from-accent to-brand-blue rounded-lg p-6 text-white shadow-brand">
@@ -31,7 +38,7 @@ const StatsOverview = ({ stats }: StatsOverviewProps) => {
           </div>
         </div>
         <p className="text-4xl font-headline font-bold mb-2">{stats.totalReach}</p>
-        <p className="text-sm font-body opacity-90">Portée Totale</p>
+        <p className="text-sm font-body opacity-90">{t.projects.statsReach}</p>
       </div>
 
       <div className="bg-gradient-to-br from-brand-green to-primary rounded-lg p-6 text-white shadow-brand">
@@ -42,7 +49,7 @@ const StatsOverview = ({ stats }: StatsOverviewProps) => {
           </div>
         </div>
         <p className="text-4xl font-headline font-bold mb-2">{stats.avgEngagement}</p>
-        <p className="text-sm font-body opacity-90">Engagement Moyen</p>
+        <p className="text-sm font-body opacity-90">{t.projects.statsEngagement}</p>
       </div>
 
       <div className="bg-gradient-to-br from-secondary to-brand-dark rounded-lg p-6 text-white shadow-brand">
@@ -53,7 +60,7 @@ const StatsOverview = ({ stats }: StatsOverviewProps) => {
           </div>
         </div>
         <p className="text-4xl font-headline font-bold mb-2">{stats.activePartners}</p>
-        <p className="text-sm font-body opacity-90">Partenaires Actifs</p>
+        <p className="text-sm font-body opacity-90">{t.projects.statsPartners}</p>
       </div>
     </div>
   );

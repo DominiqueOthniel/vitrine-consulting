@@ -11,17 +11,20 @@ interface MethodologyStep {
 
 interface MethodologyInfographicProps {
   steps: MethodologyStep[];
+  title: string;
+  subtitle: string;
+  downloadLabel: string;
 }
 
-const MethodologyInfographic: React.FC<MethodologyInfographicProps> = ({ steps }) => {
+const MethodologyInfographic: React.FC<MethodologyInfographicProps> = ({ steps, title, subtitle, downloadLabel }) => {
   return (
     <div className="bg-card rounded-xl shadow-subtle p-8 border border-border">
       <div className="text-center mb-12">
         <h3 className="text-3xl font-headline font-bold text-foreground mb-3">
-          Notre Méthodologie Éprouvée
+          {title}
         </h3>
         <p className="text-base font-body text-muted-foreground max-w-2xl mx-auto">
-          Un processus structuré en 4 étapes pour garantir des résultats mesurables
+          {subtitle}
         </p>
       </div>
 
@@ -72,7 +75,7 @@ const MethodologyInfographic: React.FC<MethodologyInfographicProps> = ({ steps }
 
       <div className="mt-12 text-center">
         <button className="px-8 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg text-sm font-cta font-semibold hover:shadow-brand transition-all duration-300 transform hover:scale-105">
-          Télécharger le Guide Complet (PDF)
+          {downloadLabel}
         </button>
       </div>
     </div>

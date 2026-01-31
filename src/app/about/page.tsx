@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Header from '@/components/common/Header';
-import HeroSection from './components/HeroSection';
+import AboutHeroSection from './components/AboutHeroSection';
+import WhoWeAreSection from './components/WhoWeAreSection';
 import CompanyStory from './components/CompanyStory';
 import TeamSection from './components/TeamSection';
 import MethodologySection from './components/MethodologySection';
@@ -304,7 +305,8 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background">
       <Header />
-      <HeroSection {...heroData} />
+      <AboutHeroSection heroData={heroData} />
+      <WhoWeAreSection />
       <CompanyStory milestones={milestones} />
       <TeamSection teamMembers={teamMembers} />
       <MethodologySection steps={methodologySteps} />

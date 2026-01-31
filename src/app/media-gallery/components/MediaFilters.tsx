@@ -1,7 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface MediaFiltersProps {
   onFilterChange: (filters: FilterState) => void;
@@ -15,6 +17,8 @@ interface FilterState {
 }
 
 const MediaFilters = ({ onFilterChange }: MediaFiltersProps) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   const [activeFilters, setActiveFilters] = useState<FilterState>({
     category: 'all',
     mediaType: 'all',
@@ -25,22 +29,22 @@ const MediaFilters = ({ onFilterChange }: MediaFiltersProps) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const categories = [
-    { value: 'all', label: 'Toutes les catégories' },
-    { value: 'events', label: 'Événements' },
-    { value: 'campaigns', label: 'Campagnes' },
-    { value: 'behind-scenes', label: 'Coulisses' },
-    { value: 'team', label: 'Équipe' },
-    { value: 'clients', label: 'Clients' }
+    { value: 'all', label: t.mediaGallery.allCategories },
+    { value: 'events', label: t.mediaGallery.events },
+    { value: 'campaigns', label: t.mediaGallery.campaigns },
+    { value: 'behind-scenes', label: t.mediaGallery.behindScenes },
+    { value: 'team', label: t.mediaGallery.team },
+    { value: 'clients', label: t.mediaGallery.clients }
   ];
 
   const mediaTypes = [
-    { value: 'all', label: 'Tous les médias' },
-    { value: 'photo', label: 'Photos' },
-    { value: 'video', label: 'Vidéos' }
+    { value: 'all', label: t.mediaGallery.allMedia },
+    { value: 'photo', label: t.mediaGallery.statsPhotos },
+    { value: 'video', label: t.mediaGallery.statsVideos }
   ];
 
   const projects = [
-    { value: 'all', label: 'Tous les projets' },
+    { value: 'all', label: t.mediaGallery.allProjects },
     { value: 'icilabouf', label: 'ICILABOUF' },
     { value: 'afterbac', label: 'Afterbac' },
     { value: 'corporate', label: 'Corporate' },
@@ -48,10 +52,10 @@ const MediaFilters = ({ onFilterChange }: MediaFiltersProps) => {
   ];
 
   const sortOptions = [
-    { value: 'recent', label: 'Plus récents' },
-    { value: 'oldest', label: 'Plus anciens' },
-    { value: 'popular', label: 'Populaires' },
-    { value: 'name', label: 'Nom A-Z' }
+    { value: 'recent', label: t.mediaGallery.sortRecent },
+    { value: 'oldest', label: t.mediaGallery.sortOldest },
+    { value: 'popular', label: t.mediaGallery.sortPopular },
+    { value: 'name', label: t.mediaGallery.sortNameAZ }
   ];
 
   const handleFilterChange = (filterType: keyof FilterState, value: string) => {
@@ -83,7 +87,7 @@ const MediaFilters = ({ onFilterChange }: MediaFiltersProps) => {
         >
           <span className="flex items-center space-x-2">
             <Icon name="AdjustmentsHorizontalIcon" size={20} />
-            <span>Filtres</span>
+            <span>{t.mediaGallery.filters}</span>
             {activeFilterCount > 0 && (
               <span className="px-2 py-0.5 bg-primary text-primary-foreground text-xs rounded-full">
                 {activeFilterCount}
@@ -103,7 +107,7 @@ const MediaFilters = ({ onFilterChange }: MediaFiltersProps) => {
         {/* Category Filter */}
         <div>
           <label className="block text-sm font-cta font-semibold text-foreground mb-3">
-            Catégorie
+            {t.mediaGallery.category}
           </label>
           <div className="space-y-2">
             {categories.map((category) => (
@@ -147,7 +151,7 @@ const MediaFilters = ({ onFilterChange }: MediaFiltersProps) => {
         {/* Project Filter */}
         <div className="pt-6 border-t border-border">
           <label className="block text-sm font-cta font-semibold text-foreground mb-3">
-            Projet
+            {t.mediaGallery.project}
           </label>
           <div className="space-y-2">
             {projects.map((project) => (
@@ -192,7 +196,7 @@ const MediaFilters = ({ onFilterChange }: MediaFiltersProps) => {
               className="w-full px-4 py-2.5 bg-muted text-foreground rounded-md text-sm font-cta font-semibold hover:bg-muted/80 transition-colors duration-200 flex items-center justify-center space-x-2"
             >
               <Icon name="XMarkIcon" size={16} />
-              <span>Réinitialiser les filtres</span>
+              <span>{t.mediaGallery.resetFilters}</span>
             </button>
           </div>
         )}

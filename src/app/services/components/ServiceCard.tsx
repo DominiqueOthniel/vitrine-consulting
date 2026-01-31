@@ -1,8 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface ServiceCardProps {
   service: {
@@ -24,6 +26,8 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service, onConsultation }) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -91,7 +95,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, onConsultation }) =>
           className="flex items-center space-x-2 text-primary hover:text-conversion-accent transition-colors duration-200 mb-6"
         >
           <span className="text-sm font-cta font-semibold">
-            {isExpanded ? 'Voir Moins' : 'Voir Méthodologie'}
+            {isExpanded ? t.services.seeLess : t.services.seeMethodology}
           </span>
           <Icon
             name="ChevronDownIcon"
@@ -104,7 +108,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, onConsultation }) =>
           <div className="space-y-6 mb-6 animate-fadeIn">
             <div>
               <h4 className="text-sm font-cta font-semibold text-foreground uppercase tracking-wider mb-3">
-                Notre Méthodologie
+                {t.services.ourMethodology}
               </h4>
               <ol className="space-y-2">
                 {service.methodology.map((step, index) => (

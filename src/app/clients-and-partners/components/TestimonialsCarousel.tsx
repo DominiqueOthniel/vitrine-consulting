@@ -1,8 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface Testimonial {
   id: number;
@@ -21,6 +23,8 @@ interface TestimonialsCarouselProps {
 }
 
 const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({ testimonials }) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -42,10 +46,10 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({ testimonial
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-headline font-bold text-foreground mb-4">
-              Ce Que Disent Nos Clients
+              {t.clientsPartners.testimonialsTitle}
             </h2>
             <p className="text-base lg:text-lg font-body text-muted-foreground max-w-2xl mx-auto">
-              Des témoignages authentiques de partenaires satisfaits
+              {t.clientsPartners.testimonialsSubtitle}
             </p>
           </div>
           <div className="bg-background rounded-2xl shadow-elevated p-8 lg:p-12">
@@ -97,10 +101,10 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({ testimonial
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-headline font-bold text-foreground mb-4">
-            Ce Que Disent Nos Clients
+            {t.clientsPartners.testimonialsTitle}
           </h2>
           <p className="text-base lg:text-lg font-body text-muted-foreground max-w-2xl mx-auto">
-            Des témoignages authentiques de partenaires satisfaits
+            {t.clientsPartners.testimonialsSubtitle}
           </p>
         </div>
 
@@ -152,7 +156,7 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({ testimonial
                       className="inline-flex items-center space-x-2 text-primary hover:text-conversion-accent transition-colors font-cta font-semibold"
                     >
                       <Icon name="PlayCircleIcon" size={24} variant="solid" />
-                      <span>Voir le témoignage vidéo</span>
+                      <span>{t.clientsPartners.viewTestimonialVideo}</span>
                     </a>
                   </div>
                 )}
@@ -163,7 +167,7 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({ testimonial
           <button
             onClick={handlePrevious}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 w-12 h-12 bg-primary text-white rounded-full shadow-brand hover:bg-conversion-accent transition-all duration-300 flex items-center justify-center"
-            aria-label="Témoignage précédent"
+            aria-label={(t.clientsPartners as { prevTestimonialAria?: string }).prevTestimonialAria ?? 'Témoignage précédent'}
           >
             <Icon name="ChevronLeftIcon" size={24} />
           </button>
@@ -171,7 +175,7 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({ testimonial
           <button
             onClick={handleNext}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 w-12 h-12 bg-primary text-white rounded-full shadow-brand hover:bg-conversion-accent transition-all duration-300 flex items-center justify-center"
-            aria-label="Témoignage suivant"
+            aria-label={(t.clientsPartners as { nextTestimonialAria?: string }).nextTestimonialAria ?? 'Témoignage suivant'}
           >
             <Icon name="ChevronRightIcon" size={24} />
           </button>
@@ -185,7 +189,7 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({ testimonial
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex ? 'bg-primary w-8' : 'bg-muted'
               }`}
-              aria-label={`Aller au témoignage ${index + 1}`}
+              aria-label={((t.clientsPartners as { goToTestimonialAria?: string }).goToTestimonialAria ?? 'Aller au témoignage {n}').replace('{n}', String(index + 1))}
             />
           ))}
         </div>

@@ -1,6 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 import MediaFilters from './MediaFilters';
 import MediaGrid from './MediaGrid';
 import MediaLightbox from './MediaLightbox';
@@ -30,6 +32,8 @@ interface FilterState {
 }
 
 const MediaGalleryInteractive = () => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   const [isHydrated, setIsHydrated] = useState(false);
   const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
   const [filteredItems, setFilteredItems] = useState<MediaItem[]>([]);
@@ -309,10 +313,10 @@ const MediaGalleryInteractive = () => {
           {/* Header */}
           <div className="mb-12">
             <h1 className="text-4xl lg:text-5xl font-headline font-bold text-foreground mb-4">
-              Galerie Média
+              {t.mediaGallery.heroTitle}
             </h1>
             <p className="text-lg text-muted-foreground font-body max-w-3xl">
-              Galerie photos et vidéos haute qualité. Slider interactif avec filtres par projet et type de média. L&apos;énergie et l&apos;impact de l&apos;agence et de ses projets.
+              {t.mediaGallery.heroSubtitle}
             </p>
           </div>
 
@@ -323,7 +327,7 @@ const MediaGalleryInteractive = () => {
                 {mockMediaItems.length}
               </div>
               <div className="text-sm text-muted-foreground font-body">
-                Médias au total
+                {t.mediaGallery.statsTotal}
               </div>
             </div>
             <div className="bg-card rounded-lg p-6 border border-border">
@@ -331,7 +335,7 @@ const MediaGalleryInteractive = () => {
                 {mockMediaItems.filter((i) => i.type === 'photo').length}
               </div>
               <div className="text-sm text-muted-foreground font-body">
-                Photos
+                {t.mediaGallery.statsPhotos}
               </div>
             </div>
             <div className="bg-card rounded-lg p-6 border border-border">
@@ -339,7 +343,7 @@ const MediaGalleryInteractive = () => {
                 {mockMediaItems.filter((i) => i.type === 'video').length}
               </div>
               <div className="text-sm text-muted-foreground font-body">
-                Vidéos
+                {t.mediaGallery.statsVideos}
               </div>
             </div>
             <div className="bg-card rounded-lg p-6 border border-border">
@@ -347,7 +351,7 @@ const MediaGalleryInteractive = () => {
                 {Math.round(mockMediaItems.reduce((sum, item) => sum + item.views, 0) / 1000)}K
               </div>
               <div className="text-sm text-muted-foreground font-body">
-                Vues totales
+                {t.mediaGallery.statsViews}
               </div>
             </div>
           </div>
@@ -366,7 +370,7 @@ const MediaGalleryInteractive = () => {
             <div className="lg:col-span-3">
               <div className="mb-6 flex items-center justify-between">
                 <p className="text-sm text-muted-foreground font-body">
-                  {filteredItems.length} {filteredItems.length === 1 ? 'résultat' : 'résultats'}
+                  {filteredItems.length} {filteredItems.length === 1 ? t.mediaGallery.result : t.mediaGallery.results}
                 </p>
               </div>
               <MediaGrid items={filteredItems} onItemClick={handleItemClick} />

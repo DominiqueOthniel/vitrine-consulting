@@ -1,6 +1,9 @@
 'use client';
 
+import { useMemo } from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface FilterBarProps {
   categories: string[];
@@ -21,12 +24,14 @@ const FilterBar = ({
   sortBy,
   onSortChange,
 }: FilterBarProps) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   return (
     <div className="bg-card rounded-lg shadow-subtle p-6 mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1">
           <label className="block text-sm font-cta font-semibold text-foreground mb-2">
-            Rechercher
+            {t.projects.search}
           </label>
           <div className="relative">
             <Icon
@@ -38,7 +43,7 @@ const FilterBar = ({
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Rechercher un projet..."
+              placeholder={t.projects.searchPlaceholder}
               className="w-full pl-10 pr-4 py-3 bg-background border border-border rounded-md text-sm font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
             />
           </div>
@@ -46,7 +51,7 @@ const FilterBar = ({
 
         <div className="lg:col-span-1">
           <label className="block text-sm font-cta font-semibold text-foreground mb-2">
-            Catégorie
+            {t.projects.category}
           </label>
           <div className="relative">
             <Icon
@@ -75,7 +80,7 @@ const FilterBar = ({
 
         <div className="lg:col-span-1">
           <label className="block text-sm font-cta font-semibold text-foreground mb-2">
-            Trier par
+            {t.projects.sortBy}
           </label>
           <div className="relative">
             <Icon
@@ -88,10 +93,10 @@ const FilterBar = ({
               onChange={(e) => onSortChange(e.target.value)}
               className="w-full pl-10 pr-10 py-3 bg-background border border-border rounded-md text-sm font-body text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 appearance-none cursor-pointer"
             >
-              <option value="recent">Plus Récents</option>
-              <option value="popular">Plus Populaires</option>
-              <option value="reach">Portée Maximale</option>
-              <option value="engagement">Engagement Élevé</option>
+              <option value="recent">{t.projects.sortRecent}</option>
+              <option value="popular">{t.projects.sortPopular}</option>
+              <option value="reach">{t.projects.sortReach}</option>
+              <option value="engagement">{t.projects.sortEngagement}</option>
             </select>
             <Icon
               name="ChevronDownIcon"

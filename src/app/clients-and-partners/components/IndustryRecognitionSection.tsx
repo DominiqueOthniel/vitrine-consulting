@@ -1,6 +1,10 @@
-import React from 'react';
+'use client';
+
+import React, { useMemo } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface Award {
   id: number;
@@ -18,15 +22,17 @@ interface IndustryRecognitionSectionProps {
 }
 
 const IndustryRecognitionSection: React.FC<IndustryRecognitionSectionProps> = ({ awards }) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   return (
     <section className="bg-card py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-headline font-bold text-foreground mb-4">
-            Reconnaissances & Certifications
+            {t.clientsPartners.recognitionTitle}
           </h2>
           <p className="text-base lg:text-lg font-body text-muted-foreground max-w-2xl mx-auto">
-            Notre excellence reconnue par les leaders de l'industrie
+            {t.clientsPartners.recognitionSubtitle}
           </p>
         </div>
 
@@ -88,10 +94,10 @@ const IndustryRecognitionSection: React.FC<IndustryRecognitionSectionProps> = ({
             </div>
             <div className="flex-1 text-center lg:text-left">
               <h3 className="text-xl font-headline font-bold text-foreground mb-2">
-                Certifications Professionnelles
+                {t.clientsPartners.certificationsProTitle}
               </h3>
               <p className="text-base font-body text-muted-foreground leading-relaxed">
-                VITRINE CONSULTING respecte toutes les normes camerounaises et internationales de protection des données. Nos processus sont conformes aux standards ISO 9001 pour la gestion de la qualité.
+                {t.clientsPartners.certificationsProDesc}
               </p>
             </div>
           </div>

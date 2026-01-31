@@ -1,31 +1,38 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
 import { useLanguage } from './LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface NavigationItem {
-  label: string;
+  labelKey: keyof typeof translations.fr.nav;
   href: string;
 }
+
+const navConfig: NavigationItem[] = [
+  { labelKey: 'home', href: '/' },
+  { labelKey: 'agency', href: '/services' },
+  { labelKey: 'projects', href: '/projects' },
+  { labelKey: 'gallery', href: '/media-gallery' },
+  { labelKey: 'clients', href: '/clients-and-partners' },
+  { labelKey: 'contact', href: '/contact' },
+];
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { lang, setLang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
 
-  const navigationItems: NavigationItem[] = [
-    { label: 'Accueil', href: '/' },
-    { label: 'Agence', href: '/services' },
-    { label: 'Projets', href: '/projects' },
-    { label: 'Galerie', href: '/media-gallery' },
-    { label: 'Clients & Partenaires', href: '/clients-and-partners' },
-    { label: 'Contact', href: '/contact' },
-  ];
+  const navigationItems = useMemo(
+    () => navConfig.map((item) => ({ label: t.nav[item.labelKey], href: item.href })),
+    [t]
+  );
 
   const moreItems: NavigationItem[] = [];
 
@@ -69,9 +76,9 @@ const Header = () => {
     >
       <div className="w-full">
         <div className="flex items-center justify-between gap-4 h-16 px-6 lg:px-8">
-          <Link href="/homepage" className="flex items-center group">
+          <Link href="/" className="flex items-center group">
             <Image
-              src="/assets/images/logo.JPG.jpeg"
+              src="/assets/images/logo-vitrine-consulting.png"
               alt="VITRINE CONSULTING"
               width={160}
               height={48}
@@ -194,13 +201,39 @@ const Header = () => {
               )}
             </div>
 
-            <div className="px-6 py-6 border-t border-border bg-card">
+            <div className="px-6 py-6 border-t border-border bg-card space-y-4">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-sm font-body text-muted-foreground">
+                  {lang === 'fr' && 'Langue'}
+                  {lang === 'en' && 'Language'}
+                  {lang === 'de' && 'Sprache'}
+                </span>
+                <div className="flex items-center gap-1 rounded-full bg-muted/40 px-1.5 py-1 border border-border/60">
+                  {(['fr', 'en', 'de'] as const).map((code) => (
+                    <button
+                      key={code}
+                      type="button"
+                      onClick={() => {
+                        handleLangChange(code);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`min-w-[44px] px-3 py-2 rounded-full text-xs font-cta font-semibold tracking-wider uppercase transition-all ${
+                        lang === code
+                          ? 'bg-primary text-primary-foreground shadow-subtle'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-background/60'
+                      }`}
+                    >
+                      {code}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <Link
                 href="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block w-full px-6 py-3 bg-primary text-primary-foreground rounded-md text-center text-base font-cta font-semibold hover:bg-conversion-accent transition-all duration-300 shadow-subtle"
               >
-                Prenez rendez-vous
+                {t.common.bookMeeting}
               </Link>
             </div>
           </nav>

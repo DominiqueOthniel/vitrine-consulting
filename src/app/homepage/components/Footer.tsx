@@ -96,9 +96,9 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           <div className="lg:col-span-2">
-            <Link href="/homepage" className="inline-block mb-6">
+            <Link href="/" className="inline-block mb-6">
               <Image
-                src="/assets/images/logo.JPG.jpeg"
+                src="/assets/images/logo-vitrine-consulting.png"
                 alt="VITRINE CONSULTING"
                 width={160}
                 height={48}

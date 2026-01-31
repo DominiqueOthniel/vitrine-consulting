@@ -1,5 +1,9 @@
-import React from 'react';
+'use client';
+
+import React, { useMemo } from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface TimelineEvent {
   id: number;
@@ -15,15 +19,18 @@ interface PartnershipTimelineSectionProps {
 }
 
 const PartnershipTimelineSection: React.FC<PartnershipTimelineSectionProps> = ({ timeline }) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
+  const clientsCountLabel = (count: number) => (t.clientsPartners.clientsCount ?? '{count}+ clients').replace('{count}', String(count));
   return (
     <section className="bg-background py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-headline font-bold text-foreground mb-4">
-            Notre Parcours de Croissance
+            {t.clientsPartners.timelineTitle}
           </h2>
           <p className="text-base lg:text-lg font-body text-muted-foreground max-w-2xl mx-auto">
-            Une décennie de partenariats durables et de croissance continue
+            {t.clientsPartners.timelineSubtitle}
           </p>
         </div>
 
@@ -45,7 +52,7 @@ const PartnershipTimelineSection: React.FC<PartnershipTimelineSectionProps> = ({
                         {event.year}
                       </span>
                       <div className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-cta font-semibold">
-                        {event.clientCount}+ clients
+                        {clientsCountLabel(event.clientCount)}
                       </div>
                     </div>
                     <h3 className="text-xl font-headline font-bold text-foreground mb-3">

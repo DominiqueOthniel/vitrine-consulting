@@ -1,9 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import ProjectCard from './ProjectCard';
 import FilterBar from './FilterBar';
 import InquiryModal from './InquiryModal';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface Project {
   id: number;
@@ -26,8 +28,12 @@ interface ProjectsInteractiveProps {
 }
 
 const ProjectsInteractive = ({ projects }: ProjectsInteractiveProps) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
+  const allProjectsLabel = t.projects.allProjects;
+  const categories = [allProjectsLabel, ...Array.from(new Set(projects.map((p) => p.category)))];
   const [isHydrated, setIsHydrated] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('Tous les Projets');
+  const [selectedCategory, setSelectedCategory] = useState(allProjectsLabel);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('recent');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,6 +42,10 @@ const ProjectsInteractive = ({ projects }: ProjectsInteractiveProps) => {
   useEffect(() => {
     setIsHydrated(true);
   }, []);
+
+  useEffect(() => {
+    setSelectedCategory((prev) => (!categories.includes(prev) ? allProjectsLabel : prev));
+  }, [allProjectsLabel, lang, categories.join(',')]);
 
   if (!isHydrated) {
     return (
@@ -62,10 +72,8 @@ const ProjectsInteractive = ({ projects }: ProjectsInteractiveProps) => {
     );
   }
 
-  const categories = ['Tous les Projets', ...Array.from(new Set(projects.map(p => p.category)))];
-
   const filteredProjects = projects.filter(project => {
-    const matchesCategory = selectedCategory === 'Tous les Projets' || project.category === selectedCategory;
+    const matchesCategory = !selectedCategory || selectedCategory === allProjectsLabel || project.category === selectedCategory;
     const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          project.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -113,20 +121,20 @@ const ProjectsInteractive = ({ projects }: ProjectsInteractiveProps) => {
             </svg>
           </div>
           <h3 className="text-2xl font-headline font-bold text-foreground mb-2">
-            Aucun Projet Trouvé
+            {t.projects.noProjectsFound}
           </h3>
           <p className="text-sm font-body text-muted-foreground mb-6">
-            Essayez de modifier vos critères de recherche ou de filtrage.
+            {t.projects.tryAdjustingFilters}
           </p>
           <button
             onClick={() => {
-              setSelectedCategory('Tous les Projets');
+              setSelectedCategory(allProjectsLabel);
               setSearchQuery('');
               setSortBy('recent');
             }}
             className="px-6 py-3 bg-primary text-primary-foreground rounded-md text-sm font-cta font-semibold hover:bg-conversion-accent transition-all duration-300"
           >
-            Réinitialiser les Filtres
+            {t.projects.resetFilters}
           </button>
         </div>
       ) : (

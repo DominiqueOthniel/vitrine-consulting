@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import { useLanguage } from '@/components/common/LanguageContext';
+import { translations } from '@/lib/translations';
 
 interface ProjectCardProps {
   project: {
@@ -25,6 +27,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, onInquire }: ProjectCardProps) => {
+  const { lang } = useLanguage();
+  const t = useMemo(() => translations[lang] ?? translations.fr, [lang]);
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -35,7 +39,7 @@ const ProjectCard = ({ project, onInquire }: ProjectCardProps) => {
     >
       {project.featured && (
         <div className="absolute top-4 left-4 z-10 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-cta font-semibold">
-          Projet Phare
+          {t.projects.featuredBadge}
         </div>
       )}
 
@@ -67,21 +71,21 @@ const ProjectCard = ({ project, onInquire }: ProjectCardProps) => {
               <Icon name="UsersIcon" size={20} className="text-primary" />
             </div>
             <p className="text-2xl font-headline font-bold text-primary">{project.stats.reach}</p>
-            <p className="text-xs font-body text-muted-foreground">Portée</p>
+            <p className="text-xs font-body text-muted-foreground">{t.projects.reach}</p>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
               <Icon name="HeartIcon" size={20} className="text-accent" />
             </div>
             <p className="text-2xl font-headline font-bold text-accent">{project.stats.engagement}</p>
-            <p className="text-xs font-body text-muted-foreground">Engagement</p>
+            <p className="text-xs font-body text-muted-foreground">{t.projects.engagement}</p>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
               <Icon name="ChartBarIcon" size={20} className="text-brand-green" />
             </div>
             <p className="text-2xl font-headline font-bold text-brand-green">{project.stats.conversion}</p>
-            <p className="text-xs font-body text-muted-foreground">Conversion</p>
+            <p className="text-xs font-body text-muted-foreground">{t.projects.conversion}</p>
           </div>
         </div>
 
@@ -101,14 +105,14 @@ const ProjectCard = ({ project, onInquire }: ProjectCardProps) => {
             onClick={() => onInquire(project.id)}
             className="flex-1 px-4 py-3 bg-primary text-primary-foreground rounded-md text-sm font-cta font-semibold hover:bg-conversion-accent transition-all duration-300 shadow-subtle hover:shadow-brand hover:scale-105 flex items-center justify-center gap-2"
           >
-            <span>Réservez un espace publicitaire</span>
+            <span>{t.projects.bookAdSpace}</span>
             <Icon name="ArrowRightIcon" size={16} />
           </button>
           <Link
             href={`/contact?project=${encodeURIComponent(project.title)}`}
             className="flex-1 px-4 py-3 border-2 border-primary text-primary rounded-md text-sm font-cta font-semibold hover:bg-primary/5 transition-all duration-300 flex items-center justify-center gap-2"
           >
-            <span>Découvrez ce projet</span>
+            <span>{t.projects.discoverProject}</span>
             <Icon name="ArrowTopRightOnSquareIcon" size={16} />
           </Link>
         </div>
